@@ -27,3 +27,6 @@ build/
 *.log
 *.swp
 node_modules
+
+# Files
+.DS_Store
