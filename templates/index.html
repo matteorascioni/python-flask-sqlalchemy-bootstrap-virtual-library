@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Library{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <h1>My Library</h1>
+        <ul class="p-0" style="list-style: none">
+            {% if book_len  < 1 %}
+                <p>Library is empty</p>
+            {% else: %}
+                {% for book in all_books %}
+                <li class="mb-2">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary"> {{ book.author }}</h6>
+                            <p class="card-text">{{ book.rating }}/10</p>
+                            <a href="{{ url_for('delete_records', id=book.id) }}" class="card-link">Delete</a>
+                            <a href={{ url_for('edit', book_id=book.id) }} class="card-link">Edit</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <a href="{{ url_for('add')}}">Add New Book</a>
+    </div>
+{% endblock %}
